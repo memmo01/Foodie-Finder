@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+     <head>
+           <title>sign up page</title>
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+ <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+<style>
+#formQuestions{
+margin-left:25%;
+}
+img{
+  height:300px;
+  width:300px;
+}
+.trial{
+  display:inline-block;
+  
+  background-color: #f2f6fa;
+  width:100%;
+  
+}
+.span{
+  margin-left:30px;
+}
+
+
+.nav{
+  background-color: #b9cfed;
+  height:200px;
+  border-bottom: 3px solid #01295c;
+  min-width:100%;
+
+}
+
+.matches{
+ /*border-top: 2px solid black;*/
+  margin-top:30px;
+  display: inline-block;
+  margin-left:250px;
+  width:100%;
+
+}
+.foodie-matches{
+  background-color: #b9cfed;
+}
+#foodie-text{
+  font-size: 30px;
+}
+.container{
+  background-color: #f2f6fa;
+}
+.title{
+  font-size:30px;
+  text-align: center;
+}
+#title-tag{
+  margin:1% 0 0 35%;
+}
+
+
+
+
+ 
+ 
+</style>
+ 
+     </head>
+<body>
+<div class="container">
+<div class="nav">
+<img src="/app/public/images/title-foodie-finder.JPG" id="title-tag" style="height:80px;width:330px;">
+<a href="/">Home</a>
+<div class="title">Thanks for filling out the survery <span id="userName"></span>! Now check out the foodies you are most compatible with below!</div>
+</div>
+<div class="trial">
+
+
+</div>
+<div class="pleaseWork">
+<div class="foodie-matches"><span id="foodie-text">Foodies you are most compatible with:</span>
+</div>
+  <div class="matches"></div>
+</div>
+</div>
+ 
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+ 	 crossorigin="anonymous"></script>
+
+ 
+ <script type="text/javascript">
+ $(document).ready(function(){
+
+ displayNewUser();
+
+
+
+
+ function displayNewUser(){
+  $.get("/api/users").then(function(data){
+
+//this will provide a customer welcome to the users name
+$("#userName").append(data[(data.length -1)].name);
+   
+    
+//this will populate the users pictue and name and possibly info about them
+  var v = $("<tr>"); 
+  v.addClass("right")
+   v.text(data[data.length -1].name);   
+     $(".trial").append(v);
+
+    var p = $("<img>");
+    p.addClass("left");
+     p.attr("src",data[data.length -1].picURL);
+    
+
+     var w = $(".trial").append(p);
+
+var m = $("<span>");
+  m.addClass("span");
+     m.text("this is something about the user i want to display");
+
+     w.append(m);
+     var b = $("<p>");
+     var pp = w.append(b);
+
+
+   
+
+
+    
+
+//this will populate information about matches to the user
+
+    for(i=0;i<(data.length -1);i++){
+    var g = $("<tr>"); 
+  g.addClass("try-border");
+      
+   g.text(data[i].name);   
+    var r =  $(".matches").append(g);
+
+    var l = $("<img>");
+    // l.addClass("lefts");
+     l.attr("src",data[i].picURL);
+
+var m = $("<span>");
+  m.addClass("span");
+     m.text("this is something about the user i want to display");
+
+    
+     var a = r.append(l);
+
+     var ee = a.append(m);
+
+     var break1= $("<br>");
+     var ww = ee.append(break1);
+     $(".matches").append(ww);
+
+
+     
+   
+
+     var lok = $("<br><br>");
+     a.append(lok);
+
+    
+  }
+
+
+  
+    
+    console.log("something here");
+   
+
+  })
+
+ }
+
+
+});
+
+
+
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+ 
+</html>
