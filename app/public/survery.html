@@ -18,7 +18,11 @@
 #formQuestions{
 margin-left:25%;
 }
- 
+textarea{
+  height:50px;
+  width:100%;
+}
+
  
 </style>
  
@@ -109,6 +113,13 @@ margin-left:25%;
                 <input type="text" class="form-control" id="Q10">
               </div>
 
+              <div class="form-group">
+                   <strong> Tell a little about yourself</strong><p/>
+                <label for="about"></label>
+                <textarea id="about" name="about" required="required"></textarea>
+                
+              </div>
+
             </form>
             <br>
             <div class="text-right">
@@ -143,7 +154,8 @@ $("#button").on("click", function(event){
         q7:$("#Q7").val().trim(),
         q8:$("#Q8").val().trim(),
         q9:$("#Q9").val().trim(),
-        q10:$("#Q10").val().trim()
+        q10:$("#Q10").val().trim(),
+        about:$("#about").val().trim()
     };
 
     $.post("/api/users",newUser)
@@ -152,7 +164,7 @@ $("#button").on("click", function(event){
         alert("information added");
 
     });
-   location.reload();
+  $(location).attr('href', '/compatible')
     
   
     

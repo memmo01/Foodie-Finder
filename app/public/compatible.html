@@ -24,13 +24,25 @@ img{
 }
 .trial{
   display:inline-block;
-  
+  margin: 30px 0 0 0;
   background-color: #f2f6fa;
   width:100%;
   
 }
+.left{
+  float:left;
+  margin:0 30px 30px 0;
+}
 .span{
-  margin-left:30px;
+  margin-top:100px;
+  font-size: 20px;
+
+}
+
+.lefts{
+  float:left;
+  margin:0 30px 30px 0;
+  border:4px solid black;
 }
 
 
@@ -45,9 +57,9 @@ img{
 .matches{
  /*border-top: 2px solid black;*/
   margin-top:30px;
-  display: inline-block;
+  display: inline-table;
   margin-left:250px;
-  width:100%;
+ 
 
 }
 .foodie-matches{
@@ -66,6 +78,15 @@ img{
 #title-tag{
   margin:1% 0 0 35%;
 }
+.try-border{
+  font-size: 30px;
+  
+}
+.right{
+  font-size: 30px;
+ 
+}
+
 
 
 
@@ -110,29 +131,28 @@ img{
   $.get("/api/users").then(function(data){
 
 //this will provide a customer welcome to the users name
-$("#userName").append(data[(data.length -1)].name);
-   
+$("#userName").append(data[(data.length -1)].name);   
     
 //this will populate the users pictue and name and possibly info about them
-  var v = $("<tr>"); 
-  v.addClass("right")
-   v.text(data[data.length -1].name);   
-     $(".trial").append(v);
+  var newUserName = $("<tr>"); 
+      newUserName.addClass("right")
+      newUserName.text(data[data.length -1].name);   
+      $(".trial").append(newUserName);
 
-    var p = $("<img>");
-    p.addClass("left");
-     p.attr("src",data[data.length -1].picURL);
+    var newUserImage = $("<img>");
+       newUserImage.addClass("left");
+       newUserImage.attr("src",data[data.length -1].picURL);
     
 
-     var w = $(".trial").append(p);
+     var newUserImageAppend = $(".trial").append(newUserImage);
 
-var m = $("<span>");
-  m.addClass("span");
-     m.text("this is something about the user i want to display");
+var newUserAbout = $("<div>");
+      newUserAbout.addClass("span");
+      newUserAbout.text(data[data.length -1].about);
 
-     w.append(m);
+     newUserImageAppend.append(newUserAbout);
      var b = $("<p>");
-     var pp = w.append(b);
+     var pp = newUserImageAppend.append(b);
 
 
    
@@ -143,41 +163,31 @@ var m = $("<span>");
 //this will populate information about matches to the user
 
     for(i=0;i<(data.length -1);i++){
-    var g = $("<tr>"); 
-  g.addClass("try-border");
+    var matchUserName = $("<tr>"); 
+  matchUserName.addClass("try-border");
       
-   g.text(data[i].name);   
-    var r =  $(".matches").append(g);
+   matchUserName.text(data[i].name);   
+    var matchUserNameAppend =  $(".matches").append(matchUserName);
+    var matchUserImage = $("<img>");
+        matchUserImage.addClass("lefts");
+        matchUserImage.attr("src",data[i].picURL);
 
-    var l = $("<img>");
-    // l.addClass("lefts");
-     l.attr("src",data[i].picURL);
-
-var m = $("<span>");
-  m.addClass("span");
-     m.text("this is something about the user i want to display");
+    var matchAbout = $("<div>");
+        matchAbout.addClass("span");
+        matchAbout.text(data[i].about);
 
     
-     var a = r.append(l);
+     var a = matchUserNameAppend.append(matchUserImage);
 
-     var ee = a.append(m);
+     var ee = a.append(matchAbout);
 
      var break1= $("<br>");
      var ww = ee.append(break1);
      $(".matches").append(ww);
-
-
-     
    
-
      var lok = $("<br><br>");
-     a.append(lok);
-
-    
-  }
-
-
-  
+     a.append(lok);    
+  }  
     
     console.log("something here");
    
