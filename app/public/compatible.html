@@ -123,6 +123,7 @@ img{
  $(document).ready(function(){
 
  displayNewUser();
+ displaymatch();
 
 
 
@@ -155,10 +156,11 @@ var newUserAbout = $("<div>");
      var pp = newUserImageAppend.append(b);
 
 
-   
+   })
 
 
-    
+   function displaymatch(){
+  $.get("/api/users").then(function(data){  
 
 //this will populate information about matches to the user
 
