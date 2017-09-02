@@ -32,6 +32,7 @@ img{
 .left{
   float:left;
   margin:0 30px 30px 0;
+  border:4px solid black;
 }
 .span{
   margin-top:100px;
@@ -77,6 +78,7 @@ img{
 }
 #title-tag{
   margin:1% 0 0 35%;
+  border:2px solid #01295c;
 }
 .try-border{
   font-size: 30px;
@@ -85,6 +87,9 @@ img{
 .right{
   font-size: 30px;
  
+}
+#home{
+  float:right;
 }
 
 
@@ -100,7 +105,7 @@ img{
 <div class="container">
 <div class="nav">
 <img src="/app/public/images/title-foodie-finder.JPG" id="title-tag" style="height:80px;width:330px;">
-<a href="/">Home</a>
+<a href="/" id="home">Home</a>
 <div class="title">Thanks for filling out the survery <span id="userName"></span>! Now check out the foodies you are most compatible with below!</div>
 </div>
 <div class="trial">
@@ -123,7 +128,7 @@ img{
  $(document).ready(function(){
 
  displayNewUser();
- displaymatch();
+ 
 
 
 
@@ -156,16 +161,16 @@ var newUserAbout = $("<div>");
      var pp = newUserImageAppend.append(b);
 
 
-   })
-
-
-   function displaymatch(){
-  $.get("/api/users").then(function(data){  
+ 
+ 
 
 //this will populate information about matches to the user
 
     for(i=0;i<(data.length -1);i++){
+    
+
     var matchUserName = $("<tr>"); 
+
   matchUserName.addClass("try-border");
       
    matchUserName.text(data[i].name);   
@@ -177,6 +182,9 @@ var newUserAbout = $("<div>");
     var matchAbout = $("<div>");
         matchAbout.addClass("span");
         matchAbout.text(data[i].about);
+        
+
+
 
     
      var a = matchUserNameAppend.append(matchUserImage);

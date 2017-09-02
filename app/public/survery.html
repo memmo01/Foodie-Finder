@@ -22,7 +22,16 @@ textarea{
   height:50px;
   width:100%;
 }
-
+.jumbotron{
+  background-color: #b9cfed;
+  border:3px solid #01295c;
+}
+.well{
+ background-image: linear-gradient(to bottom,#b9cfed 0,#b9cfed 100%);
+}
+body{
+  background-color: #f2f6fa;
+}
  
 </style>
  
@@ -49,7 +58,7 @@ textarea{
               </div>
 
               <br>
-              <div class="well well-lg"><h3>With the Following questions,input a number 1-5. 1 being you strongly disagree. 5 being you strongly agree..</h3></div>
+              <div class="well well-lg" id="well"><h3>With the Following questions,input a number 1-5. 1 being you strongly disagree. 5 being you strongly agree..</h3></div>
               
               <br>
              
@@ -123,7 +132,7 @@ textarea{
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="button"><span class="glyphicon glyphicon-fire"></span> Add user</button>
+              <button type="submit" class="btn btn-primary btn-md" id="button"><span class="glyphicon glyphicon-fire"></span> Find your Foodies</button>
             </div>
              <a href="/api/users"> API USERS</a>
           </div>
