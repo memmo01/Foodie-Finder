@@ -161,12 +161,14 @@ var newUserAbout = $("<div>");
      var pp = newUserImageAppend.append(b);
 
 
- 
+ });
  
 
 //this will populate information about matches to the user
 
-    for(i=0;i<(data.length -1);i++){
+  $.get("/api/match").then(function(data){
+   
+    for(i=0;i<(data.length);i++){
     
 
     var matchUserName = $("<tr>"); 

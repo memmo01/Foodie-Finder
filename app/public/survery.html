@@ -171,14 +171,58 @@ $("#button").on("click", function(event){
     .done(function(data){
         console.log(data);
         alert("information added");
+        tryi();
 
     });
-  $(location).attr('href', '/compatible')
+
+      
+  
+
+
     
   
     
    
 });
+
+var comp = [];
+function tryi(){
+    $.get("/api/users").then(function(data){
+
+      for(q=0;q<(data.length-1);q++){
+        var total = Math.abs(parseInt(data[data.length-1].q1) - parseInt(data[q].q1) + (parseInt(data[data.length-1].q2) - parseInt(data[q].q2)) + (parseInt(data[data.length-1].q3) - parseInt(data[q].q3)) + (parseInt(data[data.length-1].q4) - parseInt(data[q].q4))+ (parseInt(data[data.length-1].q5) - parseInt(data[q].q5)) + (parseInt(data[data.length-1].q6) - parseInt(data[q].q6)) + (parseInt(data[data.length-1].q7) - parseInt(data[q].q7))+ (parseInt(data[data.length-1].q8) - parseInt(data[q].q8))+(parseInt(data[data.length-1].q9) - parseInt(data[q].q9))+ (parseInt(data[data.length-1].q10) - parseInt(data[q].q10)));
+        if(total <= 10){
+
+          var matching = {
+            name: data[q].name,
+            picURL:data[q].picURL,
+            q1:data[q].q1,
+            q2:data[q].q2,
+            q3:data[q].q3,
+            q4:data[q].q4,
+            q5:data[q].q5,
+            q6:data[q].q6,
+            q7:data[q].q7,
+            q8:data[q].q8,
+            q9:data[q].q9,
+            q10:data[q].q10,
+            about:data[q].about
+          };
+
+          $.post("/api/match",matching)
+    .done(function(data){
+        console.log(data);
+        alert("information added matching");
+          
+         
+
+        });
+       }
+        }
+      
+    $(location).attr('href', '/compatible')
+  })
+    }
  </script>
  
  
